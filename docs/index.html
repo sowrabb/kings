@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="/">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Kings Trading App">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Kings">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>Kings Trading App</title>
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Preload critical resources -->
+  <link rel="preload" href="main.dart.js" as="script">
+  <link rel="preload" href="flutter.js" as="script">
+  
+  <!-- Optimize for mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  
+  <!-- Performance optimizations -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  
+  <script>
+    // The value below is injected by flutter build, do not touch.
+    const serviceWorkerVersion = "1346531728";
+    
+    // Register service worker for PWA
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js')
+          .then(function(registration) {
+            console.log('SW registered: ', registration);
+          })
+          .catch(function(registrationError) {
+            console.log('SW registration failed: ', registrationError);
+          });
+      });
+    }
+  </script>
+  <!-- This script adds the flutter initialization JS code -->
+  <script src="flutter.js" defer></script>
+</head>
+<body>
+  <script>
+    window.addEventListener('load', function(ev) {
+      // Download main.dart.js
+      _flutter.loader.loadEntrypoint({
+        serviceWorker: {
+          serviceWorkerVersion: serviceWorkerVersion,
+        },
+        onEntrypointLoaded: function(engineInitializer) {
+          engineInitializer.initializeEngine().then(function(appRunner) {
+            appRunner.runApp();
+          });
+        }
+      });
+    });
+  </script>
+  
+  <!-- Enhanced Loading indicator -->
+  <div id="loading">
+    <style>
+      body {
+        inset: 0;
+        overflow: hidden;
+        margin: 0;
+        padding: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
+        color: white;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      }
+      .loading {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+        text-align: center;
+        max-width: 300px;
+      }
+      .logo {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 8px;
+      }
+      .spinner {
+        width: 60px;
+        height: 60px;
+        border: 4px solid rgba(255, 255, 255, 0.2);
+        border-top: 4px solid white;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      .status {
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 8px;
+        min-height: 24px;
+      }
+      .progress {
+        width: 200px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 2px;
+        overflow: hidden;
+        margin-bottom: 8px;
+      }
+      .progress-bar {
+        height: 100%;
+        background: linear-gradient(90deg, #10B981, #3B82F6);
+        border-radius: 2px;
+        transition: width 0.3s ease;
+        animation: progress 3s ease-in-out infinite;
+      }
+      .percentage {
+        font-size: 14px;
+        opacity: 0.8;
+      }
+      .details {
+        font-size: 12px;
+        opacity: 0.6;
+        margin-top: 8px;
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      @keyframes progress {
+        0% { width: 0%; }
+        20% { width: 20%; }
+        40% { width: 45%; }
+        60% { width: 70%; }
+        80% { width: 85%; }
+        100% { width: 95%; }
+      }
+      .pulse {
+        animation: pulse 2s ease-in-out infinite;
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.7; }
+      }
+    </style>
+    <div class="loading">
+      <div class="logo">👑 Kings</div>
+      <div class="spinner"></div>
+      <div class="status" id="status">Initializing...</div>
+      <div class="progress">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="percentage" id="percentage">0%</div>
+      <div class="details" id="details">Preparing your trading experience</div>
+    </div>
+  </div>
+
+  <script>
+    // Enhanced loading animation
+    const statusMessages = [
+      { text: "Initializing...", progress: 5 },
+      { text: "Loading core modules...", progress: 15 },
+      { text: "Downloading trading data...", progress: 30 },
+      { text: "Setting up portfolio...", progress: 45 },
+      { text: "Configuring real-time feeds...", progress: 60 },
+      { text: "Optimizing performance...", progress: 75 },
+      { text: "Launching trading interface...", progress: 85 },
+      { text: "Almost ready...", progress: 95 },
+      { text: "Launching Kings Trading App...", progress: 100 }
+    ];
+
+    let currentStep = 0;
+    const statusEl = document.getElementById('status');
+    const progressBarEl = document.getElementById('progressBar');
+    const percentageEl = document.getElementById('percentage');
+    const detailsEl = document.getElementById('details');
+
+    function updateLoading() {
+      if (currentStep < statusMessages.length) {
+        const step = statusMessages[currentStep];
+        statusEl.textContent = step.text;
+        progressBarEl.style.width = step.progress + '%';
+        percentageEl.textContent = step.progress + '%';
+        
+        // Update details based on step
+        const details = [
+          "Preparing your trading experience",
+          "Loading market data",
+          "Setting up secure connection",
+          "Initializing portfolio manager",
+          "Configuring real-time updates",
+          "Optimizing for mobile",
+          "Preparing trading interface",
+          "Finalizing setup",
+          "Ready to trade!"
+        ];
+        detailsEl.textContent = details[currentStep] || "";
+        
+        currentStep++;
+        
+        if (currentStep < statusMessages.length) {
+          setTimeout(updateLoading, 800 + Math.random() * 400);
+        }
+      }
+    }
+
+    // Start the loading animation
+    setTimeout(updateLoading, 500);
+  </script>
+</body>
+</html>
