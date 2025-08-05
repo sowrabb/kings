@@ -5,14 +5,9 @@
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="Kings Trading App">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Kings">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kings Trading App</title>
   <link rel="manifest" href="manifest.json">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="flutter.js" defer></script>
 </head>
 <body>
@@ -96,7 +91,7 @@
     <div class="loading">
       <div class="logo">👑 Kings</div>
       <div class="spinner"></div>
-      <div class="status" id="status">Initializing...</div>
+      <div class="status" id="status">Loading...</div>
       <div class="progress">
         <div class="progress-bar" id="progressBar"></div>
       </div>
@@ -108,15 +103,12 @@
   <script>
     // Simple loading animation
     const statusMessages = [
-      { text: "Initializing...", progress: 5 },
-      { text: "Loading core modules...", progress: 15 },
-      { text: "Downloading trading data...", progress: 30 },
-      { text: "Setting up portfolio...", progress: 45 },
-      { text: "Configuring real-time feeds...", progress: 60 },
-      { text: "Optimizing performance...", progress: 75 },
-      { text: "Launching trading interface...", progress: 85 },
-      { text: "Almost ready...", progress: 95 },
-      { text: "Launching Kings Trading App...", progress: 100 }
+      { text: "Loading...", progress: 10 },
+      { text: "Initializing...", progress: 25 },
+      { text: "Setting up...", progress: 50 },
+      { text: "Almost ready...", progress: 75 },
+      { text: "Launching...", progress: 90 },
+      { text: "Ready!", progress: 100 }
     ];
 
     let currentStep = 0;
@@ -134,13 +126,10 @@
         
         const details = [
           "Preparing your trading experience",
-          "Loading market data",
-          "Setting up secure connection",
-          "Initializing portfolio manager",
-          "Configuring real-time updates",
-          "Optimizing for mobile",
-          "Preparing trading interface",
+          "Loading core modules",
+          "Setting up interface",
           "Finalizing setup",
+          "Launching Kings Trading App",
           "Ready to trade!"
         ];
         detailsEl.textContent = details[currentStep] || "";
@@ -148,7 +137,7 @@
         currentStep++;
         
         if (currentStep < statusMessages.length) {
-          setTimeout(updateLoading, 800 + Math.random() * 400);
+          setTimeout(updateLoading, 1000);
         }
       }
     }
@@ -156,10 +145,12 @@
     // Start the loading animation
     setTimeout(updateLoading, 500);
 
-    // Initialize Flutter when page loads
+    // Initialize Flutter
     window.addEventListener('load', function() {
-      // Simple Flutter initialization
-      _flutter.loader.load();
+      // Wait a bit then initialize
+      setTimeout(function() {
+        _flutter.loader.load();
+      }, 2000);
     });
   </script>
 </body>
