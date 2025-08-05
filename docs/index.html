@@ -1,93 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
   <base href="/">
-
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="Kings Trading App">
-
-  <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="Kings">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
-
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
-
   <title>Kings Trading App</title>
   <link rel="manifest" href="manifest.json">
-
-  <!-- Preload critical resources -->
-  <link rel="preload" href="main.dart.js" as="script">
-  <link rel="preload" href="flutter.js" as="script">
-  
-  <!-- Optimize for mobile -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="mobile-web-app-capable" content="yes">
-  
-  <!-- Performance optimizations -->
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  
-  <script>
-    // The value below is injected by flutter build, do not touch.
-    const serviceWorkerVersion = "929701493";
-    
-    // Register service worker for PWA
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js')
-          .then(function(registration) {
-            console.log('SW registered: ', registration);
-          })
-          .catch(function(registrationError) {
-            console.log('SW registration failed: ', registrationError);
-          });
-      });
-    }
-  </script>
-  <!-- This script adds the flutter initialization JS code -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="flutter.js" defer></script>
 </head>
 <body>
-  <script>
-    window.addEventListener('load', function(ev) {
-      // Initialize Flutter
-      _flutter.loader.load({
-        serviceWorker: {
-          serviceWorkerVersion: serviceWorkerVersion,
-        }
-      });
-    });
-  </script>
-  
-  <!-- Enhanced Loading indicator -->
   <div id="loading">
     <style>
       body {
-        inset: 0;
-        overflow: hidden;
         margin: 0;
         padding: 16px;
         display: flex;
         justify-content: center;
         align-items: center;
+        min-height: 100vh;
         background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
         color: white;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -155,13 +92,6 @@
         80% { width: 85%; }
         100% { width: 95%; }
       }
-      .pulse {
-        animation: pulse 2s ease-in-out infinite;
-      }
-      @keyframes pulse {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.7; }
-      }
     </style>
     <div class="loading">
       <div class="logo">👑 Kings</div>
@@ -176,7 +106,7 @@
   </div>
 
   <script>
-    // Enhanced loading animation
+    // Simple loading animation
     const statusMessages = [
       { text: "Initializing...", progress: 5 },
       { text: "Loading core modules...", progress: 15 },
@@ -202,7 +132,6 @@
         progressBarEl.style.width = step.progress + '%';
         percentageEl.textContent = step.progress + '%';
         
-        // Update details based on step
         const details = [
           "Preparing your trading experience",
           "Loading market data",
@@ -226,6 +155,12 @@
 
     // Start the loading animation
     setTimeout(updateLoading, 500);
+
+    // Initialize Flutter when page loads
+    window.addEventListener('load', function() {
+      // Simple Flutter initialization
+      _flutter.loader.load();
+    });
   </script>
 </body>
 </html>
