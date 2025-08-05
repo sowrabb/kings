@@ -8,42 +8,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kings Trading App</title>
   <link rel="manifest" href="manifest.json">
-  <script src="flutter.js" defer></script>
 </head>
 <body>
   <div id="loading" style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: Arial, sans-serif;">
     <div style="text-align: center;">
       <h1>Loading Kings App...</h1>
-      <p id="status">Initializing Flutter...</p>
+      <p id="status">Loading Flutter runtime...</p>
     </div>
   </div>
 
   <script>
     console.log('Script started');
     
-    window.addEventListener('load', function(ev) {
-      console.log('Page loaded, initializing Flutter...');
-      document.getElementById('status').textContent = 'Loading Flutter engine...';
+    // Load flutter.js dynamically
+    const script = document.createElement('script');
+    script.src = 'flutter.js';
+    script.onload = function() {
+      console.log('flutter.js loaded');
+      document.getElementById('status').textContent = 'Initializing Flutter...';
       
-      try {
-        _flutter.loader.load().then(function(engineInitializer) {
-          console.log('Flutter engine loaded');
-          document.getElementById('status').textContent = 'Initializing engine...';
-          return engineInitializer.initializeEngine();
-        }).then(function(appRunner) {
-          console.log('Engine initialized, running app...');
-          document.getElementById('status').textContent = 'Running app...';
-          document.getElementById('loading').style.display = 'none';
-          return appRunner.runApp();
-        }).catch(function(error) {
-          console.error('Flutter initialization failed:', error);
-          document.getElementById('status').textContent = 'Error: ' + error.message;
-        });
-      } catch (error) {
-        console.error('Error in Flutter initialization:', error);
-        document.getElementById('status').textContent = 'Error: ' + error.message;
-      }
-    });
+      // Wait a bit for Flutter to be ready
+      setTimeout(function() {
+        if (typeof _flutter !== 'undefined') {
+          console.log('Flutter is available, initializing...');
+          document.getElementById('status').textContent = 'Loading Flutter engine...';
+          
+          _flutter.loader.load().then(function(engineInitializer) {
+            console.log('Flutter engine loaded');
+            document.getElementById('status').textContent = 'Initializing engine...';
+            return engineInitializer.initializeEngine();
+          }).then(function(appRunner) {
+            console.log('Engine initialized, running app...');
+            document.getElementById('status').textContent = 'Running app...';
+            document.getElementById('loading').style.display = 'none';
+            return appRunner.runApp();
+          }).catch(function(error) {
+            console.error('Flutter initialization failed:', error);
+            document.getElementById('status').textContent = 'Error: ' + error.message;
+          });
+        } else {
+          console.error('Flutter not available');
+          document.getElementById('status').textContent = 'Error: Flutter runtime not loaded';
+        }
+      }, 1000);
+    };
+    script.onerror = function() {
+      console.error('Failed to load flutter.js');
+      document.getElementById('status').textContent = 'Error: Failed to load Flutter runtime';
+    };
+    document.head.appendChild(script);
   </script>
 </body>
 </html>
