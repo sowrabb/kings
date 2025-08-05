@@ -145,12 +145,15 @@
     // Start the loading animation
     setTimeout(updateLoading, 500);
 
-    // Initialize Flutter
-    window.addEventListener('load', function() {
-      // Wait a bit then initialize
-      setTimeout(function() {
-        _flutter.loader.load();
-      }, 2000);
+    // Use modern Flutter initialization
+    window.addEventListener('load', function(ev) {
+      _flutter.loader.load().then(function(engineInitializer) {
+        return engineInitializer.initializeEngine();
+      }).then(function(appRunner) {
+        // Hide loading screen
+        document.getElementById('loading').style.display = 'none';
+        return appRunner.runApp();
+      });
     });
   </script>
 </body>
