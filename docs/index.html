@@ -11,9 +11,38 @@
   <script src="flutter.js" defer></script>
 </head>
 <body>
+  <div id="loading" style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: Arial, sans-serif;">
+    <div style="text-align: center;">
+      <h1>Loading Kings App...</h1>
+      <p id="status">Initializing Flutter...</p>
+    </div>
+  </div>
+
   <script>
+    console.log('Script started');
+    
     window.addEventListener('load', function(ev) {
-      _flutter.loader.load();
+      console.log('Page loaded, initializing Flutter...');
+      document.getElementById('status').textContent = 'Loading Flutter engine...';
+      
+      try {
+        _flutter.loader.load().then(function(engineInitializer) {
+          console.log('Flutter engine loaded');
+          document.getElementById('status').textContent = 'Initializing engine...';
+          return engineInitializer.initializeEngine();
+        }).then(function(appRunner) {
+          console.log('Engine initialized, running app...');
+          document.getElementById('status').textContent = 'Running app...';
+          document.getElementById('loading').style.display = 'none';
+          return appRunner.runApp();
+        }).catch(function(error) {
+          console.error('Flutter initialization failed:', error);
+          document.getElementById('status').textContent = 'Error: ' + error.message;
+        });
+      } catch (error) {
+        console.error('Error in Flutter initialization:', error);
+        document.getElementById('status').textContent = 'Error: ' + error.message;
+      }
     });
   </script>
 </body>
