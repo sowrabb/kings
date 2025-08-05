@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // PWA configuration can be added back later
+  // For now, let's get the basic build working
 };
 
 export default nextConfig;

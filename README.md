@@ -1,36 +1,176 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# KingStock - Mobile Stock Trading PWA
 
-## Getting Started
+A modern, mobile-first Progressive Web App (PWA) for stock trading and market tracking, built with Next.js 14, TypeScript, and shadcn/ui.
 
-First, run the development server:
+![KingStock App](https://img.shields.io/badge/Next.js-15.4.5-black?style=for-the-badge&logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=for-the-badge&logo=tailwind-css)
+![PWA](https://img.shields.io/badge/PWA-Ready-green?style=for-the-badge)
 
+## ✨ Features
+
+### 📱 **Mobile-First Design**
+- Optimized for mobile devices with touch-friendly interface
+- Responsive design that works on all screen sizes
+- PWA capabilities for app-like experience
+
+### 📊 **Stock Trading Features**
+- **SL/PP Analysis**: Support and resistance level tracking
+- **Position Management**: Portfolio overview and position tracking
+- **Wishlist**: Personal stock watchlist with real-time updates
+- **Trade History**: Recent trades and transaction history
+- **Profile Management**: User account and settings
+
+### 🎨 **Modern UI/UX**
+- Clean, professional interface built with shadcn/ui
+- Dark/light theme support
+- Smooth animations and transitions
+- Intuitive navigation with bottom tab bar
+
+### ⚡ **PWA Capabilities**
+- ✅ **Installable**: Can be installed on mobile devices
+- ✅ **Offline Support**: Works offline with cached data
+- ✅ **App-like Experience**: Full-screen standalone mode
+- ✅ **Fast Loading**: Optimized for performance
+- ✅ **Push Notifications**: Ready for price alerts
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Node.js 18+ 
+- npm or yarn
+
+### Installation
+
+1. **Clone the repository**
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/yourusername/kingstock.git
+cd kingstock/kings
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Install dependencies**
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. **Run the development server**
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. **Open your browser**
+Navigate to [http://localhost:3000](http://localhost:3000)
 
-## Learn More
+### Building for Production
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build
+npm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📱 PWA Installation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### On Mobile Devices
 
-## Deploy on Vercel
+1. Open the app in your mobile browser (Chrome/Safari)
+2. Tap the "Add to Home Screen" option in your browser menu
+3. The app will be installed and accessible from your home screen
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### On Desktop
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Open the app in Chrome/Edge
+2. Click the install icon in the address bar
+3. The app will be installed and accessible from your desktop
+
+## 🛠 Tech Stack
+
+- **Framework**: Next.js 14 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **UI Components**: shadcn/ui
+- **Icons**: Lucide React
+- **PWA**: next-pwa
+- **Charts**: Recharts (ready for implementation)
+
+## 📁 Project Structure
+
+```
+kings/
+├── app/
+│   ├── globals.css          # Global styles with PWA optimizations
+│   ├── layout.tsx           # Root layout with PWA meta tags
+│   └── page.tsx            # Main app page with all features
+├── components/
+│   └── ui/                 # shadcn/ui components
+├── public/
+│   ├── manifest.json       # PWA manifest
+│   ├── sw.js              # Service worker
+│   └── icon-*.png         # PWA icons
+├── types/
+│   └── next-pwa.d.ts      # TypeScript declarations
+└── next.config.ts         # Next.js config with PWA settings
+```
+
+## 🎯 Key Features
+
+### **SL/PP Analysis**
+- Support and resistance level tracking
+- Price analysis and recommendations
+- Technical indicators
+
+### **Position Management**
+- Portfolio overview with total value
+- Individual stock positions
+- Profit/loss tracking
+
+### **Wishlist**
+- Add/remove stocks from watchlist
+- Real-time price updates
+- Stock search functionality
+
+### **Trade History**
+- Recent trading activity
+- Transaction details
+- Performance tracking
+
+### **Profile**
+- User account information
+- Trading statistics
+- Account settings
+
+## 🔮 Future Enhancements
+
+- [ ] Real-time stock data API integration
+- [ ] Interactive stock charts and graphs
+- [ ] Advanced portfolio analytics
+- [ ] Push notifications for price alerts
+- [ ] Social trading features
+- [ ] News feed integration
+- [ ] Advanced order types
+- [ ] Multi-currency support
+
+## 🤝 Contributing
+
+We welcome contributions! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- [Next.js](https://nextjs.org/) for the amazing React framework
+- [shadcn/ui](https://ui.shadcn.com/) for the beautiful UI components
+- [Tailwind CSS](https://tailwindcss.com/) for the utility-first CSS framework
+- [Lucide](https://lucide.dev/) for the beautiful icons
+
+---
+
+**Made with ❤️ for the trading community**
